@@ -1,1 +1,309 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise App - Portal Oficial</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --bg-light: #f8fafc;
+            --text-dark: #334155;
+            --text-light: #64748b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        /* Menú de Navegación */
+        header {
+            background-color: var(--primary);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ffffff;
+        }
+
+        .btn-soporte-nav {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-soporte-nav:hover {
+            background-color: var(--accent);
+        }
+
+        /* Sección Principal (Hero) */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, var(--primary) 0%, #1e293b 100%);
+            color: #ffffff;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 20px 0;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(37,99,235,0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background-color: #334155;
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+        /* Sección de Productos */
+        .section-productos {
+            padding: 80px 5%;
+            background-color: var(--bg-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .grid-productos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .card ul {
+            padding-left: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Sección de Soporte (Formulario de Tickets) */
+        .section-soporte {
+            padding: 80px 5%;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #1e293b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">EnterpriseApp</div>
+        <nav>
+            <a href="#productos">Productos</a>
+            <a href="#soporte" class="btn-soporte-nav">Soporte TI</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Optimiza tus procesos al instante</h1>
+        <p>Accede de forma inmediata a través de la web o descarga nuestra potente versión nativa para escritorio.</p>
+        <div class="hero-buttons">
+            <a href="#productos" class="btn btn-primary">Iniciar Versión Web</a>
+            <a href="#productos" class="btn btn-secondary">Descargar Instalador</a>
+        </div>
+    </section>
+
+    <section class="section-productos" id="productos">
+        <div class="section-title">
+            <h2>Elige la versión ideal para ti</h2>
+        </div>
+        <div class="grid-productos">
+            <div class="card">
+                <div>
+                    <h3>Producto Web (Cloud)</h3>
+                    <ul>
+                        <li>Sin instalaciones necesarias.</li>
+                        <li>Acceso desde cualquier dispositivo.</li>
+                        <li>Sincronización en tiempo real en la nube.</li>
+                    </ul>
+                </div>
+                <a href="#" class="btn btn-primary" style="text-align: center; margin-top: 20px;">Lanzar en Web</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Producto Local (Instalable)</h3>
+                    <ul>
+                        <li>Mayor velocidad de procesamiento.</li>
+                        <li>Soporte para trabajar sin internet.</li>
+                        <li>Seguridad cifrada de archivos locales.</li>
+                    </ul>
+                </div>
+                <a href="#" class="btn btn-secondary" style="text-align: center; margin-top: 20px;">Descargar .EXE / .DMG</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-soporte" id="soporte">
+        <div class="section-title">
+            <h2>¿Necesitas ayuda? Abre un Ticket</h2>
+            <p style="color: var(--text-light);">Al enviar este formulario, nuestro sistema de atención TI te asignará un asesor automáticamente.</p>
+        </div>
+        
+        <div class="form-container">
+            <form action="https://formspree.io/f/tu_id_aqui" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="name" required placeholder="Ej. Gabriel Esma">
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="email" required placeholder="ejemplo@correo.com">
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Descripción del Problema</label>
+                    <textarea id="mensaje" name="message" required placeholder="Escribe detalladamente qué sucede con la aplicación..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Solicitud de Soporte</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>
