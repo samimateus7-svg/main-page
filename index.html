@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise App - Portal Oficial</title>
+    <title>Enterprise Hub - Portal de Productos</title>
     <style>
         :root {
             --primary: #0f172a;
@@ -39,17 +38,23 @@
             color: #ffffff;
             font-size: 20px;
             font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
 
         nav a {
             color: #94a3b8;
             text-decoration: none;
-            margin-left: 20px;
             font-size: 14px;
             transition: color 0.3s;
         }
 
-        nav a:hover, nav a.active {
+        nav a:hover {
             color: #ffffff;
         }
 
@@ -59,32 +64,34 @@
             color: #ffffff;
             padding: 8px 16px;
             border-radius: 6px;
-            cursor: pointer;
+            font-weight: 500;
         }
 
         .btn-soporte-nav:hover {
             background-color: var(--accent);
         }
 
-        /* Sección Principal (Hero) */
+        /* Sección Principal (Hero Hub) */
         .hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: linear-gradient(180deg, var(--primary) 0%, #1e293b 100%);
             color: #ffffff;
         }
 
         .hero h1 {
-            font-size: 42px;
+            font-size: 46px;
             margin: 0 0 20px 0;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
+            font-weight: 700;
         }
 
         .hero p {
             color: #94a3b8;
             font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
+            max-width: 650px;
+            margin: 0 auto 45px auto;
+            line-height: 1.6;
         }
 
         .hero-buttons {
@@ -101,209 +108,171 @@
             border-radius: 8px;
             text-decoration: none;
             transition: all 0.3s;
+            display: inline-block;
         }
 
         .btn-primary {
             background-color: var(--accent);
             color: #ffffff;
-            box-shadow: 0 4px 14px rgba(37,99,235,0.4);
+            box-shadow: 0 4px 14px rgba(37,99,235,0.3);
         }
 
         .btn-primary:hover {
             background-color: #1d4ed8;
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
             background-color: #334155;
             color: #ffffff;
+            border: 1px solid #475569;
         }
 
         .btn-secondary:hover {
             background-color: #475569;
+            transform: translateY(-1px);
         }
 
-        /* Sección de Productos */
-        .section-productos {
-            padding: 80px 5%;
-            background-color: var(--bg-light);
+        /* Contenedor de Secciones */
+        .container {
+            padding: 80px 10%;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
         }
 
-        .section-title h2 {
-            font-size: 28px;
-            color: var(--primary);
-            margin: 0;
-        }
-
-        .grid-productos {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .card {
+        .feature-section {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 30px;
-            width: 300px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .card h3 {
-            font-size: 20px;
-            margin-top: 0;
+        .feature-section h2 {
+            font-size: 24px;
             color: var(--primary);
+            margin-top: 0;
+            letter-spacing: -0.5px;
         }
 
-        .card ul {
-            padding-left: 20px;
+        .feature-section p {
             color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .feature-section ul {
+            padding-left: 20px;
+            color: var(--text-dark);
             font-size: 14px;
-            line-height: 1.8;
+            line-height: 2;
+            margin: 20px 0;
         }
 
-        /* Sección de Soporte (Formulario de Tickets) */
-        .section-soporte {
-            padding: 80px 5%;
-        }
-
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #ffffff;
+        /* Banner de Soporte Externo */
+        .banner-soporte {
+            background-color: var(--bg-light);
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 40px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-top: 60px;
+            text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        .banner-soporte h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 22px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            height: 100px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background-color: var(--primary);
-            color: #ffffff;
-            border: none;
-            padding: 12px;
+        .banner-soporte p {
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 10px auto 25px auto;
             font-size: 15px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
         }
 
-        .btn-submit:hover {
-            background-color: #1e293b;
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+            font-size: 13px;
+            border-top: 1px solid #e2e8f0;
+            background-color: var(--bg-light);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">EnterpriseApp</div>
+        <div class="logo">EnterpriseHub</div>
         <nav>
-            <a href="#productos">Productos</a>
-            <a href="#soporte" class="btn-soporte-nav">Soporte TI</a>
+            <a href="#toolkit">Dev-Toolkit</a>
+            <a href="#lanzador">Lanzador Local</a>
+            <a href="https://samimateus7-svg.github.io/soport-web/" target="_blank" class="btn-soporte-nav">Portal de Soporte</a>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Optimiza tus procesos al instante</h1>
-        <p>Accede de forma inmediata a través de la web o descarga nuestra potente versión nativa para escritorio.</p>
+        <h1>Centro Integrado de Aplicaciones</h1>
+        <p>Potencia tu flujo de trabajo desplegando utilidades web en la nube o ejecutando herramientas nativas desde nuestro entorno unificado.</p>
         <div class="hero-buttons">
-            <a href="#productos" class="btn btn-primary">Iniciar Versión Web</a>
-            <a href="#productos" class="btn btn-secondary">Descargar Instalador</a>
+            <a href="https://samimateus7-svg.github.io/dev-toolkit/" target="_blank" class="btn btn-primary">Abrir Dev-Toolkit</a>
+            <a href="#lanzador" class="btn btn-secondary">Explorar Entorno Local</a>
         </div>
     </section>
 
-    <section class="section-productos" id="productos">
-        <div class="section-title">
-            <h2>Elige la versión ideal para ti</h2>
-        </div>
-        <div class="grid-productos">
-            <div class="card">
-                <div>
-                    <h3>Producto Web (Cloud)</h3>
-                    <ul>
-                        <li>Sin instalaciones necesarias.</li>
-                        <li>Acceso desde cualquier dispositivo.</li>
-                        <li>Sincronización en tiempo real en la nube.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn btn-primary" style="text-align: center; margin-top: 20px;">Lanzar en Web</a>
-            </div>
-
-            <div class="card">
-                <div>
-                    <h3>Producto Local (Instalable)</h3>
-                    <ul>
-                        <li>Mayor velocidad de procesamiento.</li>
-                        <li>Soporte para trabajar sin internet.</li>
-                        <li>Seguridad cifrada de archivos locales.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn btn-secondary" style="text-align: center; margin-top: 20px;">Descargar .EXE / .DMG</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-soporte" id="soporte">
-        <div class="section-title">
-            <h2>¿Necesitas ayuda? Abre un Ticket</h2>
-            <p style="color: var(--text-light);">Al enviar este formulario, nuestro sistema de atención TI te asignará un asesor automáticamente.</p>
-        </div>
+    <main class="container">
         
-        <div class="form-container">
-            <form action="https://formspree.io/f/tu_id_aqui" method="POST">
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" name="name" required placeholder="Ej. Gabriel Esma">
+        <div class="features-grid">
+            
+            <div class="feature-section" id="toolkit">
+                <div>
+                    <h2>Dev-Toolkit</h2>
+                    <p>Una suite completa de utilidades avanzadas accesible de forma instantánea a través del navegador, optimizada para agilizar tareas cotidianas de desarrollo.</p>
+                    <ul>
+                        <li>Despliegue directo en la nube sin configuraciones locales.</li>
+                        <li>Herramientas modulares integradas en una sola pestaña.</li>
+                        <li>Interfaz reactiva optimizada para entornos web modernos.</li>
+                    </ul>
                 </div>
-                <div class="form-group">
-                    <label for="correo">Correo Electrónico</label>
-                    <input type="email" id="correo" name="email" required placeholder="ejemplo@correo.com">
+                <a href="https://samimateus7-svg.github.io/dev-toolkit/" target="_blank" class="btn btn-primary" style="text-align: center; margin-top: 20px;">Acceder a Dev-Toolkit Web</a>
+            </div>
+
+            <div class="feature-section" id="lanzador">
+                <div>
+                    <h2>Lanzador de Aplicaciones (Local)</h2>
+                    <p>Tu entorno centralizado ejecutable diseñado para gestionar y correr utilidades de escritorio internas, como el módulo dedicado de calculadora avanzada.</p>
+                    <ul>
+                        <li>Arquitectura nativa para una ejecución de alta velocidad.</li>
+                        <li>Acceso directo a herramientas internas (App Calculator).</li>
+                        <li>Entorno preparado para futuras compilaciones unificadas.</li>
+                    </ul>
                 </div>
-                <div class="form-group">
-                    <label for="mensaje">Descripción del Problema</label>
-                    <textarea id="mensaje" name="message" required placeholder="Escribe detalladamente qué sucede con la aplicación..."></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Enviar Solicitud de Soporte</button>
-            </form>
+                <span class="btn btn-secondary" style="text-align: center; margin-top: 20px; cursor: default; background-color: #f1f5f9; color: #94a3b8; border-color: #e2e8f0;">Lanzador Integrado (En Desarrollo)</span>
+            </div>
+
         </div>
-    </section>
+
+        <div class="banner-soporte">
+            <h3>¿Necesitas asistencia técnica?</h3>
+            <p>Si experimentas problemas con el Lanzador Local, la Calculadora o el Dev-Toolkit, abre un caso en nuestro sistema de atención automatizado TI.</p>
+            <a href="https://samimateus7-svg.github.io/soport-web/" target="_blank" class="btn btn-primary" style="background-color: var(--primary);">Ir a la Web de Soporte Externa</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Enterprise Hub. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>
